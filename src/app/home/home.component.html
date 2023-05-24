@@ -1,1 +1,54 @@
 <h1>Hello Home!</h1>
+<h2>Hello {{name}}</h2>
+<input value="{{name}}">
+<br>
+<input [value]="name" title="Day la {{name}}">
+<br>
+<input [value]="name" [title]="'Day la '+name">
+<div *ngIf="age>18"> tren 18 </div>
+<div *ngIf="age<=18"> duoi 18 </div>
+<br><br><br>
+<input type="text" [(ngModel)]="age">
+<h2>Your age is {{age}}</h2>
+<div *ngIf="age <=18; then tre; else gia"></div>
+<ng-template #tre>duoi 18 tuoi</ng-template>
+<ng-template #gia>tren 18 tuoi</ng-template>
+<button (click)="resetName()">Reset Name</button>
+<br><br><br>
+<h1>Trai cay</h1>
+<div *ngFor="let traicay of traiCay, let i = index ">
+    <span>{{ (i+1) }}. {{traicay}}</span>
+</div>
+<br><br><br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ten</th>
+            <th>gia</th>
+        </tr>
+    </thead>
+    <tbody  *ngFor="let traicay of traiCay2, let i = index ">
+        <tr>
+            <td>{{traicay.ten | uppercase}}</td>
+            <td [ngClass]="{ 'giaRe': traicay.gia<50 }">{{traicay.gia | currency: "VND":"symbol":"1.2"}}</td>
+        </tr>
+    </tbody>
+    
+</table>
+
+<br><br><br>
+
+<span>Tỉnh/ thành phố:</span>
+<select id="city" (change)="changeCity($event)">
+    <option *ngFor="let data of VNData">
+        {{data.city}}
+    </option>
+</select>
+<br>
+<span>Quận/ huyện:</span>
+<select id="district">
+    <option *ngFor="let district of districts">
+        {{district}}
+    </option>
+</select>
+
